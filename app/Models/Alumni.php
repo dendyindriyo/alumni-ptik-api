@@ -33,4 +33,24 @@ class Alumni extends Model
     {
         return $this->hasMany(RiwayatPekerjaanAlumni::class, 'nim');
     }
+
+    public function tahunMasuk()
+    {
+        return $this->belongsTo(TahunMasuk::class, 'id_tahun_masuk');
+    }
+
+    public function tahunLulus()
+    {
+        return $this->belongsTo(TahunLulus::class, 'id_tahun_lulus');
+    }
+
+    public function provinsi()
+    {
+        return $this->belongsTo(Provinsi::class, 'id_provinsi');
+    }
+
+    public function peminatan()
+    {
+        return $this->belongsTo(Peminatan::class, 'id_peminatan');
+    }
 }

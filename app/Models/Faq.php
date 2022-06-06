@@ -5,20 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Peminatan extends Model
+class Faq extends Model
 {
     use HasFactory;
 
-    protected $table = 'peminatan';
+    protected $table = 'faq';
 
     protected $primaryKey = 'id';
 
     protected $guarded = [];
 
     public $timestamps = false;
-
-    public function alumnis()
-    {
-        return $this->hasMany(Alumni::class, 'id_peminatan');
-    }
 }

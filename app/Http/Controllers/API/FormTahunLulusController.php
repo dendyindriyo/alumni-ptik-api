@@ -21,17 +21,21 @@ class FormTahunLulusController extends Controller
         return response()->json([
             'message'       => 'Data tahun lulus berhasil ditambahkan',
             'data_tahun_lulus'  => $tahunlulus
-        ], 200);
+        ], 201);
     }
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'tahun_lulus' => 'required|unique:tahun_lulus'
+        ]);
+
         $tahunlulus = TahunLulus::where('id', $id)->first();
         $tahunlulus->update($request->all());
 
         return response()->json([
             'message'       => 'Data tahun lulus berhasil diubah',
-            'data_alumni'  => $tahunlulus
+            'data_tahun_lulus'  => $tahunlulus
         ], 200);
     }
 
@@ -51,6 +55,16 @@ class FormTahunLulusController extends Controller
         return response()->json([
             'message'       => 'Berhasil menampilkan data tahun lulus',
             'data_tahun_lulus'  => $tahunlulus
+        ], 200);
+    }
+
+    public function showAlumni(TahunLulus $id_tahun_lulus)
+    {
+        $id_tahun_lulus = TahunLulus::with('alumnis')->where('id', $id_tahun_lulus->id)->get();
+
+        return response()->json([
+            'message'       => 'Berhasil menampilkan detail data alumni berdasarkan tahun lulus',
+            'data_tahun_lulus'  => $id_tahun_lulus
         ], 200);
     }
 }

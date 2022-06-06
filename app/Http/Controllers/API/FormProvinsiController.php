@@ -21,17 +21,21 @@ class FormProvinsiController extends Controller
         return response()->json([
             'message'       => 'Data provinsi berhasil ditambahkan',
             'data_provinsi'  => $provinsi
-        ], 200);
+        ], 201);
     }
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nama_provinsi' => 'required|unique:provinsi|max:50'
+        ]);
+
         $provinsi = Provinsi::where('id', $id)->first();
         $provinsi->update($request->all());
 
         return response()->json([
             'message'       => 'Data provinsi berhasil diubah',
-            'data_alumni'  => $provinsi
+            'data_provinsi'  => $provinsi
         ], 200);
     }
 
@@ -51,6 +55,16 @@ class FormProvinsiController extends Controller
         return response()->json([
             'message'       => 'Berhasil menampilkan data provinsi',
             'data_provinsi'  => $provinsi
+        ], 200);
+    }
+
+    public function showAlumni(Provinsi $id_provinsi)
+    {
+        $id_provinsi = Provinsi::with('alumnis')->where('id', $id_provinsi->id)->get();
+
+        return response()->json([
+            'message'       => 'Berhasil menampilkan detail data alumni berdasarkan tahun masuk',
+            'data_provinsi'  => $id_provinsi
         ], 200);
     }
 }

@@ -34,7 +34,7 @@ class FormRiwayatPekerjaanAlumniController extends Controller
         return response()->json([
             'message'       => 'Data riwayat pekerjaan alumni berhasil ditambahkan',
             'data_riwayat_pekerjaan_alumni'  => $riwayat
-        ], 200);
+        ], 201);
     }
 
     public function update(Request $request, $id)
@@ -59,7 +59,7 @@ class FormRiwayatPekerjaanAlumniController extends Controller
 
     public function show(Alumni $nim)
     {
-        $nim = Alumni::with('riwayatPekerjaanAlumnis')->where('nim', $nim->nim)->get();
+        $nim = Alumni::with('tahunMasuk', 'tahunLulus', 'provinsi', 'peminatan', 'riwayatPekerjaanAlumnis')->where('nim', $nim->nim)->get();
 
         return response()->json([
             'message'       => 'Berhasil menampilkan data alumni serta riwayat pekerjaan alumni',

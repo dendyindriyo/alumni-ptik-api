@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePeminatanTable extends Migration
+class CreateBeasiswaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreatePeminatanTable extends Migration
      */
     public function up()
     {
-        Schema::create('peminatan', function (Blueprint $table) {
+        Schema::create('beasiswa', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_peminatan', 30);
+            $table->string('nama_beasiswa', 100);
+            $table->date('waktu_beasiswa');
+            $table->text('deskripsi_beasiswa');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +29,6 @@ class CreatePeminatanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('peminatan');
+        Schema::dropIfExists('beasiswa');
     }
 }

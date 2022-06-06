@@ -10,6 +10,15 @@ use App\Http\Controllers\Api\FormTahunMasukController;
 use App\Http\Controllers\Api\FormTahunLulusController;
 use App\Http\Controllers\Api\FormProvinsiController;
 use App\Http\Controllers\Api\FormPeminatanController;
+use App\Http\Controllers\Api\FormKepengurusanIkaPtikController;
+use App\Http\Controllers\Api\FormDosenController;
+use App\Http\Controllers\Api\FormKegiatanAlumniController;
+use App\Http\Controllers\Api\FormBeritaAlumniController;
+use App\Http\Controllers\Api\FormFaqController;
+use App\Http\Controllers\Api\FormBeasiswaController;
+use App\Http\Controllers\Api\FormAlumniBerprestasiController;
+use App\Http\Controllers\Api\FormTracerStudyController;
+use App\Http\Controllers\Api\FormLowonganPekerjaanController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -51,6 +60,42 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/peminatan', [FormPeminatanController::class, 'create']);
     Route::put('/peminatan/{id}', [FormPeminatanController::class, 'update']);
     Route::delete('/peminatan/{id}', [FormPeminatanController::class, 'delete']);
+
+    Route::post('/kepengurusan-ika-ptik', [FormKepengurusanIkaPtikController::class, 'create']);
+    Route::put('/kepengurusan-ika-ptik/{id}', [FormKepengurusanIkaPtikController::class, 'update']);
+    Route::delete('/kepengurusan-ika-ptik/{id}', [FormKepengurusanIkaPtikController::class, 'delete']);
+
+    Route::post('/dosen-ptik', [FormDosenController::class, 'create']);
+    Route::put('/dosen-ptik/{id}', [FormDosenController::class, 'update']);
+    Route::delete('/dosen-ptik/{id}', [FormDosenController::class, 'delete']);
+
+    Route::post('/kegiatan-alumni', [FormKegiatanAlumniController::class, 'create']);
+    Route::put('/kegiatan-alumni/{id}', [FormKegiatanAlumniController::class, 'update']);
+    Route::delete('/kegiatan-alumni/{id}', [FormKegiatanAlumniController::class, 'delete']);
+
+    Route::post('/berita-alumni', [FormBeritaAlumniController::class, 'create']);
+    Route::put('/berita-alumni/{id}', [FormBeritaAlumniController::class, 'update']);
+    Route::delete('/berita-alumni/{id}', [FormBeritaAlumniController::class, 'delete']);
+
+    Route::post('/faq', [FormFaqController::class, 'create']);
+    Route::put('/faq/{id}', [FormFaqController::class, 'update']);
+    Route::delete('/faq/{id}', [FormFaqController::class, 'delete']);
+
+    Route::post('/informasi-beasiswa', [FormBeasiswaController::class, 'create']);
+    Route::put('/informasi-beasiswa/{id}', [FormBeasiswaController::class, 'update']);
+    Route::delete('/informasi-beasiswa/{id}', [FormBeasiswaController::class, 'delete']);
+
+    Route::post('/alumni-berprestasi', [FormAlumniBerprestasiController::class, 'create']);
+    Route::put('/alumni-berprestasi/{id}', [FormAlumniBerprestasiController::class, 'update']);
+    Route::delete('/alumni-berprestasi/{id}', [FormAlumniBerprestasiController::class, 'delete']);
+
+    Route::post('/tracer-study', [FormTracerStudyController::class, 'create']);
+    Route::put('/tracer-study/{id}', [FormTracerStudyController::class, 'update']);
+    Route::delete('/tracer-study/{id}', [FormTracerStudyController::class, 'delete']);
+
+    Route::post('/lowongan-pekerjaan', [FormLowonganPekerjaanController::class, 'create']);
+    Route::put('/lowongan-pekerjaan/{id}', [FormLowonganPekerjaanController::class, 'update']);
+    Route::delete('/lowongan-pekerjaan/{id}', [FormLowonganPekerjaanController::class, 'delete']);
 });
 
 //Public Routes
@@ -65,5 +110,37 @@ Route::get('/tahun-masuk', [FormTahunMasukController::class, 'show']);
 Route::get('/tahun-lulus', [FormTahunLulusController::class, 'show']);
 Route::get('/provinsi', [FormProvinsiController::class, 'show']);
 Route::get('/peminatan', [FormPeminatanController::class, 'show']);
-Route::get('/alumni/search/nama-alumni/{nama_alumni}', [FormAlumniController::class, 'searchNamaAlumni']);
-Route::get('/alumni/search/nim/{nim}', [FormAlumniController::class, 'searchNim']);
+
+Route::get('/tahun-masuk/{id_tahun_masuk}/alumni', [FormTahunMasukController::class, 'showAlumni']);
+Route::get('/tahun-lulus/{id_tahun_lulus}/alumni', [FormTahunLulusController::class, 'showAlumni']);
+Route::get('/provinsi/{id_provinsi}/alumni', [FormProvinsiController::class, 'showAlumni']);
+Route::get('/peminatan/{id_peminatan}/alumni', [FormPeminatanController::class, 'showAlumni']);
+
+Route::get('/kepengurusan-ika-ptik', [FormKepengurusanIkaPtikController::class, 'show']);
+
+Route::get('/dosen-ptik', [FormDosenController::class, 'show']);
+
+Route::get('/kegiatan-alumni', [FormKegiatanAlumniController::class, 'show']);
+
+Route::get('/berita-alumni', [FormBeritaAlumniController::class, 'show']);
+
+Route::get('/faq', [FormFaqController::class, 'show']);
+
+Route::get('/informasi-beasiswa', [FormBeasiswaController::class, 'show']);
+
+Route::get('/alumni-berprestasi', [FormAlumniBerprestasiController::class, 'show']);
+
+Route::get('/tracer-study', [FormTracerStudyController::class, 'show']);
+
+Route::get('/lowongan-pekerjaan', [FormLowonganPekerjaanController::class, 'show']);
+
+
+
+
+
+
+
+
+// Route::get('/alumni/search/nama-alumni/{nama_alumni}', [FormAlumniController::class, 'searchNamaAlumni']);
+// Route::get('/alumni/search/nim/{nim}', [FormAlumniController::class, 'searchNim']);
+// Route::get('/alumni/sort/nama-alumni', [FormAlumniController::class, 'sortNamaAlumni']);

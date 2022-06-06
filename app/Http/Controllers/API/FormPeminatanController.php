@@ -21,17 +21,21 @@ class FormPeminatanController extends Controller
         return response()->json([
             'message'       => 'Data peminatan berhasil ditambahkan',
             'data_peminatan'  => $peminatan
-        ], 200);
+        ], 201);
     }
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nama_peminatan' => 'required|unique:peminatan|max:50'
+        ]);
+
         $peminatan = Peminatan::where('id', $id)->first();
         $peminatan->update($request->all());
 
         return response()->json([
             'message'       => 'Data peminatan berhasil diubah',
-            'data_alumni'  => $peminatan
+            'data_peminatan'  => $peminatan
         ], 200);
     }
 
@@ -51,6 +55,16 @@ class FormPeminatanController extends Controller
         return response()->json([
             'message'       => 'Berhasil menampilkan data peminatan',
             'data_peminatan'  => $peminatan
+        ], 200);
+    }
+
+    public function showAlumni(Peminatan $id_peminatan)
+    {
+        $id_peminatan = Peminatan::with('alumnis')->where('id', $id_peminatan->id)->get();
+
+        return response()->json([
+            'message'       => 'Berhasil menampilkan detail data alumni berdasarkan tahun masuk',
+            'data_peminatan'  => $id_peminatan
         ], 200);
     }
 }

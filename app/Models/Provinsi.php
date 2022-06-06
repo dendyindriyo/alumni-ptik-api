@@ -16,4 +16,9 @@ class Provinsi extends Model
     protected $guarded = [];
 
     public $timestamps = false;
+
+    public function alumnis()
+    {
+        return $this->hasMany(Alumni::class, 'id_provinsi');
+    }
 }

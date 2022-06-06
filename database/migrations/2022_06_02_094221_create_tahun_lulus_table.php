@@ -16,7 +16,6 @@ class CreateTahunLulusTable extends Migration
         Schema::create('tahun_lulus', function (Blueprint $table) {
             $table->id();
             $table->year('tahun_lulus');
-            $table->timestamps();
         });
     }
 
