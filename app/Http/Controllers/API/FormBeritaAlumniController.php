@@ -61,7 +61,7 @@ class FormBeritaAlumniController extends Controller
         $beritaalumni->update();
 
         return response()->json([
-            'message'       => 'Data berita alumni berhasil ditambahkan',
+            'message'       => 'Data berita alumni berhasil diubah',
             'data_berita_alumni'  => $beritaalumni
         ], 200);
     }

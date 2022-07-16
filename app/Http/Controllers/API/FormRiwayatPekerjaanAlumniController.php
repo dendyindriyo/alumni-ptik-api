@@ -13,8 +13,8 @@ class FormRiwayatPekerjaanAlumniController extends Controller
     {
         $request->validate([
             'nim' => 'required|max:15',
-            'nama_pekerjaan' => 'nullable|max:50',
-            'nama_perusahaan' => 'nullable|max:50',
+            'nama_pekerjaan' => 'required|max:50',
+            'nama_perusahaan' => 'required|max:50',
             'tahun_mulai' => 'nullable',
             'tahun_selesai' => 'nullable',
             'lokasi_pekerjaan' => 'nullable|max:255',

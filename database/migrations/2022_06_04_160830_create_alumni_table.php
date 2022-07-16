@@ -35,7 +35,7 @@ class CreateAlumniTable extends Migration
             $table->string('kota', 50);
             $table->string('provinsi', 50)->nullable();
             $table->integer('kode_pos');
-            $table->bigInteger('no_telp');
+            $table->string('no_telp', 15);
             $table->string('email', 100);
             $table->string('foto_alumni')->nullable();
             $table->string('pekerjaan', 50)->nullable();

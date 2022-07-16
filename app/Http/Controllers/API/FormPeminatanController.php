@@ -63,7 +63,7 @@ class FormPeminatanController extends Controller
         $id_peminatan = Peminatan::with('alumnis')->where('id', $id_peminatan->id)->get();
 
         return response()->json([
-            'message'       => 'Berhasil menampilkan detail data alumni berdasarkan tahun masuk',
+            'message'       => 'Berhasil menampilkan detail data alumni berdasarkan peminatan',
             'data_peminatan'  => $id_peminatan
         ], 200);
     }

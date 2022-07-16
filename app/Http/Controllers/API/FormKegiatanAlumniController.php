@@ -61,7 +61,7 @@ class FormKegiatanAlumniController extends Controller
         $kegiatanalumni->update();
 
         return response()->json([
-            'message'       => 'Data kegiatan alumni berhasil ditambahkan',
+            'message'       => 'Data kegiatan alumni berhasil diubah',
             'data_kegiatan_alumni'  => $kegiatanalumni
         ], 200);
     }

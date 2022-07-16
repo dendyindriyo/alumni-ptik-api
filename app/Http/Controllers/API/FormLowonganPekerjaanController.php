@@ -65,7 +65,7 @@ class FormLowonganPekerjaanController extends Controller
         $lowonganpekerjaan->update();
 
         return response()->json([
-            'message'       => 'Data lowongan pekerjaan berhasil ditambahkan',
+            'message'       => 'Data lowongan pekerjaan berhasil diubah',
             'data_lowongan_pekerjaan'  => $lowonganpekerjaan
         ], 200);
     }

@@ -63,7 +63,7 @@ class FormProvinsiController extends Controller
         $id_provinsi = Provinsi::with('alumnis')->where('id', $id_provinsi->id)->get();
 
         return response()->json([
-            'message'       => 'Berhasil menampilkan detail data alumni berdasarkan tahun masuk',
+            'message'       => 'Berhasil menampilkan detail data alumni berdasarkan provinsi',
             'data_provinsi'  => $id_provinsi
         ], 200);
     }

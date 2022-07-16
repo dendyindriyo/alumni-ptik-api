@@ -61,7 +61,7 @@ class FormAlumniBerprestasiController extends Controller
         $alumniberprestasi->update();
 
         return response()->json([
-            'message'       => 'Data alumni berprestasi berhasil ditambahkan',
+            'message'       => 'Data alumni berprestasi berhasil diubah',
             'data_alumni_berprestasi'  => $alumniberprestasi
         ], 200);
     }

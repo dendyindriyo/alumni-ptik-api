@@ -33,8 +33,8 @@ class FormAlumniController extends Controller
             'kota' => 'required|max:50',
             'provinsi' => 'nullable|max:50',
             'kode_pos' => 'required|max:5',
-            'no_telp' => 'required|max:15',
-            'email' => 'required|max:100',
+            'no_telp' => 'required|max:15|unique:alumni',
+            'email' => 'required|max:100|unique:alumni',
             'foto_alumni' => 'nullable|image|mimes:jpg,bmp,png|max:2048',
             'pekerjaan' => 'nullable|max:50',
             'nama_ayah' => 'nullable|max:100',
@@ -194,25 +194,45 @@ class FormAlumniController extends Controller
 
     public function show(Request $request)
     {
-        $alumni = Alumni::query();
-
+        $alumni_query = Alumni::with('tahunMasuk', 'tahunLulus', 'provinsi', 'peminatan');
         if ($keyword = $request->input('keyword')) {
-            $alumni->where('nama_alumni', 'LIKE', '%' . $keyword . '%')
+            $alumni_query->where('nama_alumni', 'LIKE', '%' . $keyword . '%')
                 ->orWhere('nim', 'LIKE', '%' . $keyword . '%');
         }
 
         if ($sortnama = $request->input('sortnama')) {
-            $alumni->orderBy('nama_alumni', $sortnama);
+            $alumni_query->orderBy('nama_alumni', $sortnama);
         }
 
         if ($sortnim = $request->input('sortnim')) {
-            $alumni->orderBy('nim', $sortnim);
+            $alumni_query->orderBy('nim', $sortnim);
         }
-
+        $alumni = $alumni_query->get();
         return response()->json([
             'message'       => 'Berhasil menampilkan detail data alumni',
-            'data_alumni'  => $alumni = Alumni::with('tahunMasuk', 'tahunLulus', 'provinsi', 'peminatan')->get()->toArray()
+            'data_alumni'  => $alumni
         ], 200);
+
+
+        // $alumni = Alumni::query();
+
+        // if ($keyword = $request->input('keyword')) {
+        //     $alumni->where('nama_alumni', 'LIKE', '%' . $keyword . '%')
+        //         ->orWhere('nim', 'LIKE', '%' . $keyword . '%');
+        // }
+
+        // if ($sortnama = $request->input('sortnama')) {
+        //     $alumni->orderBy('nama_alumni', $sortnama);
+        // }
+
+        // if ($sortnim = $request->input('sortnim')) {
+        //     $alumni->orderBy('nim', $sortnim);
+        // }
+
+        // return response()->json([
+        //     'message'       => 'Berhasil menampilkan detail data alumni',
+        //     'data_alumni'  => $alumni = Alumni::with('tahunMasuk', 'tahunLulus', 'provinsi', 'peminatan')->get()->toArray()
+        // ], 200);
     }
 
     // public function searchNamaAlumni($nama_alumni)

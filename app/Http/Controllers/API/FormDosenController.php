@@ -67,7 +67,7 @@ class FormDosenController extends Controller
         $dosen->update();
 
         return response()->json([
-            'message'       => 'Data dosen berhasil ditambahkan',
+            'message'       => 'Data dosen berhasil diubah',
             'data_dosen'  => $dosen
         ], 200);
     }
