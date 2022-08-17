@@ -17,14 +17,14 @@ class AuthController extends Controller
 
         if (!$admin || !Hash::check($request->password, $admin->password)) {
             return response()->json([
-                'pesan' => 'Email atau password salah'
+                'message' => 'Email atau password salah'
             ], 400);
         }
 
         $token = $admin->createToken('accesstoken')->plainTextToken;
 
         return response()->json([
-            'pesan' => 'Login Sukses',
+            'message' => 'Login sukses',
             'admin' => $admin,
             'token' => $token,
         ], 200);
@@ -59,7 +59,7 @@ class AuthController extends Controller
         $request->user()->currentAccessToken()->delete();
 
         return [
-            'pesan' => 'Logout sukses'
+            'message' => 'Logout sukses'
         ];
     }
 }
